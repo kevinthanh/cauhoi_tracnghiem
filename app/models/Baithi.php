@@ -2,16 +2,14 @@
 
 class Baithi extends Eloquent {
 	public $table = 'baithi';
-	protected $fillable = array('cauhoi_id','dapan_id','user_id','monhoc_id');
+	protected $fillable = array('monhoc_id','user_id','diem','ngay_tao');
 	
-	public function cauhoi() {
-		return $this->hasMany('Cauhoi','cauhoi_id');
-	}
-	public function dapan() {
-		return $this->hasMany('Dapan','dapan_id');
-	}
+	
 	public function users() {
-		return $this->belongsTo('User','user_id');
+            return $this->belongsTo('User','user_id');
 	}
+        public function chitietbaithi() {
+            return $this->belongsTo('Chitietbaithi','baithi_id');
+        }
 }
 

@@ -18,8 +18,8 @@ class Dapan extends Eloquent {
     public function users() {
         return $this->belongsTo('User','user_id');
     }
-	public function baithi() {
-		return $this->belongsTo('Baithi','dapan_id');
-	}
+    public function chitietbaithi() {
+	return $this->belongsTo('Chitietbaithi','dapan_id');
+    }
     
 }

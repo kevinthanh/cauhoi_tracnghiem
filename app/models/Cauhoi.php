@@ -22,7 +22,7 @@ class Cauhoi extends Eloquent {
     public function dapan() {
         return $this->hasMany('Dapan','cauhoi_id');
     }
-	public function baithi() {
-		return $this->belongsTo('Baithi','cauhoi_id');
-	}
+    public function chitietbaithi() {
+	return $this->belongsTo('Chitietbaithi','cauhoi_id');
+    }
 }

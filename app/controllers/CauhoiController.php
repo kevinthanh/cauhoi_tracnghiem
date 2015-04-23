@@ -56,15 +56,15 @@ class CauhoiController extends BaseController {
             return Redirect::route('listcauhoi_get')->with('error','Không tồn tại câu hỏi này');
         }
     }
-	public function getCauhoiByMonhoc($id,$title) {
-		$monhoc = Monhoc::find($id);
-		if($monhoc) {
-			$questions = $monhoc->cauhoi()->paginate(10);
+    public function getCauhoiByMonhoc($id,$title) {
+	$monhoc = Monhoc::find($id);
+	if($monhoc) {
+            $questions = $monhoc->cauhoi()->paginate(10);
 			
-			return View::make('frontend.tracnghiem.index')->with('title','Câu hỏi thuộc chuyên mục: $monhoc->tenmonhoc')->with('questions',$questions);
-		}else {
-			return Redirect::route('frontend.tracnghiem.index')->with('error','Không tồn tại chuyên mục này');
-		}
+            return View::make('frontend.tracnghiem.index', compact('id'))->with('title','Câu hỏi thuộc chuyên mục: $monhoc->tenmonhoc')->with('questions',$questions);
+	}else {
+            return Redirect::route('frontend.tracnghiem.index')->with('error','Không tồn tại chuyên mục này');
 	}
+    }
 	
 }

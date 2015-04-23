@@ -2,6 +2,7 @@
 @section('content')
 @if(Sentry::check())
 <form action="{{URL::route('tracnghiem_post')}}" method="POST">
+	<input type="hidden" name="monhoc_id" value="{{$id}}">
 		<?php $i=0; ?>
 		@foreach($questions as $question)
 		<?php $i++; ?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2015 at 06:48 AM
+-- Generation Time: Apr 23, 2015 at 10:35 AM
 -- Server version: 5.5.39
 -- PHP Version: 5.4.31
 
@@ -48,49 +48,27 @@ INSERT INTO `assigned_roles` (`id`, `user_id`, `role_id`) VALUES
 
 CREATE TABLE IF NOT EXISTS `baithi` (
 `id` int(11) NOT NULL,
-  `cauhoi_id` int(11) NOT NULL,
-  `dapan_id` int(11) NOT NULL,
   `monhoc_id` int(11) NOT NULL,
   `user_id` int(10) unsigned NOT NULL,
-  `baithi_group_id` int(11) NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=293 ;
+  `ngay_tao` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `diem` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `baithi`
 --
 
-INSERT INTO `baithi` (`id`, `cauhoi_id`, `dapan_id`, `monhoc_id`, `user_id`, `baithi_group_id`, `created_at`, `updated_at`) VALUES
-(277, 4, 6, 0, 3, 0, '2015-04-06 23:02:43', '2015-04-06 23:02:43'),
-(278, 5, 9, 0, 3, 0, '2015-04-06 23:02:44', '2015-04-06 23:02:44'),
-(279, 4, 6, 0, 3, 0, '2015-04-06 23:05:45', '2015-04-06 23:05:45'),
-(280, 5, 9, 0, 3, 0, '2015-04-06 23:05:45', '2015-04-06 23:05:45'),
-(281, 4, 6, 0, 3, 0, '2015-04-06 23:21:13', '2015-04-06 23:21:13'),
-(282, 5, 9, 0, 3, 0, '2015-04-06 23:21:13', '2015-04-06 23:21:13'),
-(283, 5, 9, 0, 3, 0, '2015-04-06 23:21:27', '2015-04-06 23:21:27'),
-(284, 4, 7, 0, 3, 0, '2015-04-08 19:10:35', '2015-04-08 19:10:35'),
-(285, 5, 9, 0, 3, 0, '2015-04-08 19:10:35', '2015-04-08 19:10:35'),
-(286, 5, 9, 0, 3, 0, '2015-04-09 00:13:51', '2015-04-09 00:13:51'),
-(287, 5, 9, 0, 3, 0, '2015-04-09 00:14:29', '2015-04-09 00:14:29'),
-(288, 5, 9, 0, 3, 0, '2015-04-09 00:20:03', '2015-04-09 00:20:03'),
-(289, 5, 9, 0, 3, 0, '2015-04-09 00:20:22', '2015-04-09 00:20:22'),
-(290, 5, 9, 0, 3, 0, '2015-04-09 02:41:04', '2015-04-09 02:41:04'),
-(291, 5, 9, 0, 3, 0, '2015-04-13 21:35:49', '2015-04-13 21:35:49'),
-(292, 5, 9, 0, 3, 0, '2015-04-13 21:36:14', '2015-04-13 21:36:14');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `baithi_group`
---
-
-CREATE TABLE IF NOT EXISTS `baithi_group` (
-`id` int(11) NOT NULL,
-  `sobaithi` int(11) NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+INSERT INTO `baithi` (`id`, `monhoc_id`, `user_id`, `ngay_tao`, `diem`, `created_at`, `updated_at`) VALUES
+(1, 2, 3, '0000-00-00 00:00:00', 0, '2015-04-23 07:38:20', '2015-04-23 07:38:20'),
+(2, 2, 3, '2015-04-23 07:44:28', 0, '2015-04-23 07:44:28', '2015-04-23 07:44:28'),
+(3, 2, 3, '2015-04-23 07:45:11', 0, '2015-04-23 07:45:11', '2015-04-23 07:45:11'),
+(4, 2, 3, '2015-04-23 07:47:20', 0, '2015-04-23 07:47:20', '2015-04-23 07:47:20'),
+(5, 2, 3, '2015-04-23 07:50:25', 0, '2015-04-23 07:50:25', '2015-04-23 07:50:25'),
+(6, 2, 3, '2015-04-23 07:50:37', 0, '2015-04-23 07:50:37', '2015-04-23 07:50:37'),
+(7, 2, 3, '2015-04-23 07:57:00', 0, '2015-04-23 07:57:00', '2015-04-23 07:57:00'),
+(8, 2, 3, '2015-04-23 07:57:19', 0, '2015-04-23 07:57:19', '2015-04-23 07:57:19');
 
 -- --------------------------------------------------------
 
@@ -126,6 +104,21 @@ INSERT INTO `cauhoi` (`id`, `tencauhoi`, `diem`, `viewed`, `monhoc_id`, `user_id
 (11, 'Which of the following DOM interfaces provides the primary data type for the entire document structure?', 10, 0, 2, 8, '2015-04-01 01:48:19', '2015-04-01 01:48:19'),
 (12, 'Which of the following interfaces of TrAX reports an error that would have occurred in the source document or transformations instructions?', 10, 0, 2, 8, '2015-04-01 01:49:41', '2015-04-01 01:49:41'),
 (13, 'Which of the following is not a package present in JAXP for SAX? ', 10, 0, 2, 8, '2015-04-01 01:50:56', '2015-04-01 01:50:56');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chi_tiet_bai_thi`
+--
+
+CREATE TABLE IF NOT EXISTS `chi_tiet_bai_thi` (
+`id` int(11) NOT NULL,
+  `baithi_id` int(11) NOT NULL,
+  `cauhoi_id` int(11) NOT NULL,
+  `dapan_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 -- --------------------------------------------------------
 
@@ -380,7 +373,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `permissions`, `activated`, `activation_code`, `activated_at`, `last_login`, `persist_code`, `reset_password_code`, `first_name`, `last_name`, `created_at`, `updated_at`) VALUES
 (1, 'thanh', 'thanh061193@gmail.com', '$2y$10$HQiLAjr/GGcdj.p0rTaEgeAfP6hbOqk.RQarFp.Pt7Dew6yJN9AU6', '{"admin":1}', 1, NULL, NULL, '2015-03-31 00:17:07', '$2y$10$xeHfG6XnREkcRn9AzBYQKesr8s0fo1fVZ9bEkfuoR2Q70iBnTUavi', NULL, 'Van thanh', 'Nguyen', '2015-03-24 00:55:39', '2015-03-31 00:17:07'),
 (2, 'huyen', 'huyen@gmail.com', '$2y$10$BIefrfPMcSFfE.35JAA37.MznEFXeYHbu.MJgm4PTPZacpyO9wfvK', NULL, 1, NULL, NULL, '2015-03-30 19:16:57', '$2y$10$stZ8hun0UgQFpkjl8HgRYO4cAtkEmjPQrbA2gNV/Z07nBxtTPVCUS', NULL, 'huyen', 'thu', '2015-03-24 03:04:59', '2015-03-30 19:16:57'),
-(3, 'student', 'admin@gmail.com', '$2y$10$FV8IcFqxpx0FngZ9iTLrDOTlhTBC3kKzeDlxxz0SzlkLAMP8BZWDm', NULL, 1, NULL, NULL, '2015-04-13 21:35:38', '$2y$10$fjkkeCBL3YWFLMERLt9XwukEIymwex9V07EOSKrEm9oRf6z44s7pG', NULL, 'trang', 'bui', '2015-03-30 19:18:11', '2015-04-13 21:35:38'),
+(3, 'student', 'admin@gmail.com', '$2y$10$FV8IcFqxpx0FngZ9iTLrDOTlhTBC3kKzeDlxxz0SzlkLAMP8BZWDm', NULL, 1, NULL, NULL, '2015-04-23 00:22:23', '$2y$10$hNgTwtVJMPo6zZvA8M/0t.Qo7G/BDP5V.99ZYubA2HiWys.DlOC4e', NULL, 'trang', 'bui', '2015-03-30 19:18:11', '2015-04-23 00:22:23'),
 (7, 'admin', 'admin2@gmail.com', '$2y$10$6mPL6yCl.bF2cJIPBXCvl.yewTRbKucFTk/F/lYEKm2OckoOKjpfe', '{"admin":1}', 1, NULL, NULL, NULL, NULL, NULL, 'Van thanh', 'Nguyen', '2015-03-31 02:12:59', '2015-03-31 02:12:59'),
 (8, 'teacher', 'teacher@gmail.com', '$2y$10$R4W6icGFbvB8Y1NwZwfo3.ld6g8CEphkLFk5UB0f7WWfMJeWsITwi', '{"admin":1}', 1, NULL, NULL, '2015-03-31 18:36:11', '$2y$10$J21yqydjzYanEcwOhIDoaODSuD5qESTuPPmMH1XZqSMQn1CIfBb3e', NULL, 'Van thanh', 'Nguyen', '2015-03-31 02:13:33', '2015-03-31 18:36:11');
 
@@ -409,19 +402,19 @@ ALTER TABLE `assigned_roles`
 -- Indexes for table `baithi`
 --
 ALTER TABLE `baithi`
- ADD PRIMARY KEY (`id`), ADD KEY `baithi_cauhoi_foreign` (`cauhoi_id`), ADD KEY `baithi_dapan_foreign` (`dapan_id`), ADD KEY `baithi_user_foreign` (`user_id`), ADD KEY `baithi_monhoc_foreign` (`monhoc_id`), ADD KEY `baithi_group` (`baithi_group_id`);
-
---
--- Indexes for table `baithi_group`
---
-ALTER TABLE `baithi_group`
- ADD PRIMARY KEY (`id`);
+ ADD PRIMARY KEY (`id`), ADD KEY `monhoc_baithi_foreignkey` (`monhoc_id`), ADD KEY `user_baithi_foreignkey` (`user_id`);
 
 --
 -- Indexes for table `cauhoi`
 --
 ALTER TABLE `cauhoi`
  ADD PRIMARY KEY (`id`), ADD KEY `cauhoi_monhoc_id_foreign` (`monhoc_id`), ADD KEY `cauhoi_user_foreign` (`user_id`);
+
+--
+-- Indexes for table `chi_tiet_bai_thi`
+--
+ALTER TABLE `chi_tiet_bai_thi`
+ ADD PRIMARY KEY (`id`), ADD KEY `baithi_chitiet_foreign` (`baithi_id`), ADD KEY `cauhoi_chitiet_foreign` (`cauhoi_id`), ADD KEY `dapan_chitiet` (`dapan_id`);
 
 --
 -- Indexes for table `dapan`
@@ -490,17 +483,17 @@ MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 -- AUTO_INCREMENT for table `baithi`
 --
 ALTER TABLE `baithi`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=293;
---
--- AUTO_INCREMENT for table `baithi_group`
---
-ALTER TABLE `baithi_group`
-MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `cauhoi`
 --
 ALTER TABLE `cauhoi`
 MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT for table `chi_tiet_bai_thi`
+--
+ALTER TABLE `chi_tiet_bai_thi`
+MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `dapan`
 --
@@ -556,9 +549,8 @@ ADD CONSTRAINT `assigned_roles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENC
 -- Constraints for table `baithi`
 --
 ALTER TABLE `baithi`
-ADD CONSTRAINT `baithi_cauhoi_foreign` FOREIGN KEY (`cauhoi_id`) REFERENCES `cauhoi` (`id`) ON DELETE CASCADE,
-ADD CONSTRAINT `baithi_dapan_foreign` FOREIGN KEY (`dapan_id`) REFERENCES `dapan` (`id`),
-ADD CONSTRAINT `baithi_user_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+ADD CONSTRAINT `monhoc_baithi_foreignkey` FOREIGN KEY (`monhoc_id`) REFERENCES `monhoc` (`id`) ON DELETE CASCADE,
+ADD CONSTRAINT `user_baithi_foreignkey` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `cauhoi`
@@ -566,6 +558,14 @@ ADD CONSTRAINT `baithi_user_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` 
 ALTER TABLE `cauhoi`
 ADD CONSTRAINT `cauhoi_monhoc_id_foreign` FOREIGN KEY (`monhoc_id`) REFERENCES `monhoc` (`id`) ON DELETE CASCADE,
 ADD CONSTRAINT `cauhoi_user_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `chi_tiet_bai_thi`
+--
+ALTER TABLE `chi_tiet_bai_thi`
+ADD CONSTRAINT `baithi_chitiet_foreign` FOREIGN KEY (`baithi_id`) REFERENCES `baithi` (`id`) ON DELETE CASCADE,
+ADD CONSTRAINT `cauhoi_chitiet_foreign` FOREIGN KEY (`cauhoi_id`) REFERENCES `cauhoi` (`id`) ON DELETE CASCADE,
+ADD CONSTRAINT `dapan_chitiet_foreign` FOREIGN KEY (`dapan_id`) REFERENCES `dapan` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `dapan`
