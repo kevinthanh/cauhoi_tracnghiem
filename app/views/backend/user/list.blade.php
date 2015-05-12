@@ -1,7 +1,7 @@
 @extends('master')
 @section('content')
     <h2>{{$title}}</h2>
-	@if(Sentry::getUser()->username)
+	@if(Auth::user()->username)
     <table class="table table-bordered table-striped table-hover">
         <tr class="info">
             <td>Username</td>

@@ -1,5 +1,5 @@
-@if(Sentry::check())
-	@if(!Sentry::hasAccess('admin'))
+@if(Auth::check())
+	@if(Auth::user()->permissions == '')
 		<div class="col-md-3" id="rightcontent">
 			<ul class="nav nav-sidebar">
 				@foreach($menus as $menu)

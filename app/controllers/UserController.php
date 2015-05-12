@@ -1,7 +1,7 @@
 <?php
 class UserController extends BaseController {
     public function getList() {
-        $users = User::paginate(3);
+        $users = User::paginate(10);
         return View::make('backend.user.list')->with('title','Danh sách user')->with('users',$users);
     }
     public function getDelte($id) {

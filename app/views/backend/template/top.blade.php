@@ -5,7 +5,7 @@
     </div>
 @endif
 
-@if(!Sentry::check())
+@if(!Auth::check())
     <div class="centerfix" id="login">
         <div class="centercontent">
             {{Form::open(array('route'=>'login_post','style'=>'float:left'))}}
@@ -20,7 +20,9 @@
 @else
     <div class="centerfix" id="login">
         <div class="centercontent">
-            <div id="userblock">Xin chào @if(Sentry::hasAccess('admin')) Admin @else Member @endif, {{Sentry::getUser()->username}} (<a href="{{URL::route('logout_get')}}">Thoát</a>) </div>
+            <div id="userblock">
+		
+		Xin chào , {{Auth::user()->username}} (<a href="{{URL::route('logout_get')}}">Thoát</a>) </div>
         </div>
     </div>
 @endif

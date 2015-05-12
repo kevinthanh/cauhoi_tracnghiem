@@ -7,7 +7,7 @@
 		   		<h4 class="modal-title" id="exampleModalLabel"><h2>{{$title}}</h2></h4>
 		  	</div>
             <div class="modal-body">
-                {{Form::open()}}
+                {{Form::open(array('route'=>'editdapan_post'))}}
                     <p class="minihead">Tên câu hỏi:</p>
                     {{Form::select('cauhoi',$cauhoi,$dapans->cauhoi_id)}}<br />
                     <p class="minihead">Tên đáp án:</p>

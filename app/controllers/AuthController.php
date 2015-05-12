@@ -4,32 +4,36 @@ class AuthController extends BaseController {
         $valid = Validator::make(Input::all(),User::$login_rules,User::$user_langs);
         
         if($valid->passes()) {
-            try {
+         
                 $datalogin = array(
                     'username'  =>  Input::get('username'),
                     'password'  =>  Input::get('password')
                 );
-                Sentry::Authenticate($datalogin,false);
-                if(Sentry::hasAccess('admin')) {
-                    return Redirect::route('index')->with('success','Đăng nhập thành công');
-                }else {
-                    return Redirect::route('frontend')->with('success','Đăng nhập thành công');
-                }
                 
-            }catch (Cartalyst\Sentry\Users\WrongPasswordException $e) {
-                
-                return Redirect::route('index')->with('errorTop','Mật khẩu không chính xác');   
-                             
-			}catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
-			 
-                return Redirect::route('index')->with('errorTop','Tên truy cập không tồn tại');
+		
+		if(Auth::attempt($datalogin)){
+			$user = Auth::user();
+			if('admin' == $user->permissions){
+				// go to admin
+				
+				return Redirect::route('index')->with('success','Đăng nhập thành công');
+			}else{
+				// go to front end
+				return Redirect::route('frontend')->with('success','Đăng nhập thành công');
 			}
+			
+		}else{
+			// login fail
+			return Redirect::route('index')->with('errorTop',$valid->errors()->first());
+		}
+
+                
         }else {
             return Redirect::route('index')->with('errorTop',$valid->errors()->first());
         }
     }
     public function getLogout() {
-        Sentry::logout();
+        Auth::logout();
         return Redirect::route('home')->with('success','Đăng xuất thành công');    
     }
     public function getRegister() {
@@ -48,14 +52,20 @@ class AuthController extends BaseController {
                 'password'      =>  Input::get('password'),
                 'activated'     =>  1,
             );
+	    
             $datalogin = array(
                 'username'  =>  Input::get('username'),
                 'password'  =>  Input::get('password'),
             );
             
-            Sentry::getUserProvider()->create($datainsert);
-            Sentry::Authenticate($datalogin,false);
-            return Redirect::route('index')->with('success','Chúc mừng bạn đăng ký thành công');
+            User::create($datainsert);
+	    
+            if(Auth::attempt($datalogin)) {
+		
+		return Redirect::route('frontend')->with('success','Chúc mừng bạn đăng ký thành công');
+	    }else {
+		return Redirect::route('register_get')->with('success','Đăng nhập không thành công');
+	    }
         }else {
             return Redirect::route('register_get')->withInput(Input::except('password','repassword'))->with('error',$valid->errors()->first());
         }

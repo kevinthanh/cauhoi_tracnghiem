@@ -23,7 +23,7 @@ class Cauhoi extends Eloquent {
 	}
 
 	public function dapan() {
-		return $this->hasMany('Dapan', 'cauhoi_id');
+		return $this->hasMany('Dapan', 'cauhoi_id')->orderBy(DB::raw('RAND()'));
 	}
 
 	public function chitietbaithi() {

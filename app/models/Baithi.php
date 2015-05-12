@@ -11,5 +11,17 @@ class Baithi extends Eloquent {
         public function chitietbaithi() {
             return $this->belongsTo('Chitietbaithi','baithi_id');
         }
+	
+	/**
+	 * Check User can test
+	 * @param User $user
+	 * @param Monhoc $monhoc
+	 * @return boolean
+	 */
+	public static function checkLanThi($userId, Monhoc $monhoc){
+		$lanThi = self::where('monhoc_id', $monhoc->id)->where('user_id', $userId)->count();
+		
+		return ($monhoc->solanthi > $lanThi);
+	}
 }
 

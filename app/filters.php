@@ -106,23 +106,46 @@ Route::filter('owner_role', function()
     }
 });
 Route::filter('check_user', function($route,$request) {
-    if(!Sentry::check()) {
+    if(!Auth::check()) {
         return Redirect::route('index')->with('error','Bạn phải đăng nhập để thực hiện thao tác này');
     }
 });
 
 Route::filter('is_login', function($route,$request) {
-    if(Sentry::check()) {
+    if(Auth::check()) {
         return Redirect::route('index')->with('error','Bạn đã đăng nhập rồi');
     }
 });
 
-Route::filter("check_access",function($route,$request,$role) {
-	if(Sentry::check()){
-		if(!Sentry::getUser()->hasAccess($role)){
-			return Redirect::route("index")->with("error","Tài khoản của bạn, không đủ quyền hạn thực hiện thao tác này");
+//Route::filter("check_access",function($route,$request,$role) {
+//	if(Sentry::check()){
+//		if(!Sentry::getUser()->hasAccess($role)){
+//			return Redirect::route("index")->with("error","Tài khoản của bạn, không đủ quyền hạn thực hiện thao tác này");
+//		}
+//	}else {
+//		return Redirect::route("index")->with("error","Bạn phải đăng nhập để thực hiện thao tác này");
+//	}
+//});
+
+Route::filter('check_user_frontend', function($route,$request) {
+    if(!Auth::check()) {
+        return Redirect::route('home')->with('error','Bạn phải đăng nhập để thực hiện thao tác này');
+    }
+});
+
+
+Route::filter("check_access",function() {
+	if(Auth::check()){
+		$user = Auth::user();
+		if('admin' == $user->permissions) {
+
+//			return Redirect::route("index")->with("success","day la trang backend");
+		}else if('' == $user->permissions) {
+
+			return Redirect::route("frontend")->with("success","Tài khoản của bạn, không đủ quyền hạn thực hiện thao tác này");
 		}
-	}else {
-		return Redirect::route("index")->with("error","Bạn phải đăng nhập để thực hiện thao tác này");
+	}else{
+		// go to login page
+		return Redirect::route("home")->with("error","Bạn phải đăng nhập để thực hiện thao tác này");
 	}
 });
